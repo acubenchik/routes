@@ -1,0 +1,13 @@
+eureka.client.serviceUrl.defaultZone: http://localhost:8010/eureka/
+spring.h2.console.enabled: true
+spring.jpa.show-sql: true
+keystore:
+ password: mySecretKey
+security:
+ oauth2:
+   resource:
+     accessTokenUri: http://localhost:8050/auth/oauth/check_token
+     userAuthorizationUri: http://localhost:8050/auth/oauth/authorize
+     userInfoUri: http://localhost:8050/auth/user
+     jwt:
+       keyUri: http://localhost:8050/auth/oauth/token_key

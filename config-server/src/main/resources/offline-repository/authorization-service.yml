@@ -1,0 +1,6 @@
+server.contextPath: /auth
+keystore:
+ password: mySecretKey
+spring:
+  mvc:
+    dispatchOptionsRequest: true
