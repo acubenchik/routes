@@ -55,6 +55,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     }
 
     public static final String SECURED_READ = "#oauth2.hasScope('resource-server-read')";
+    public static final String SECURED_WRITE = "#oauth2.hasScope('resource-server-write')";
 
     @Override
     public void configure(HttpSecurity http) throws Exception {

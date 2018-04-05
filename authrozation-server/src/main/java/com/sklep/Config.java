@@ -35,7 +35,11 @@ public class Config extends AuthorizationServerConfigurerAdapter {
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory().
                 withClient("santanu").secret("123").authorizedGrantTypes("client_credentials")
-                .scopes("resource-server-read").accessTokenValiditySeconds(100);
+                .scopes("resource-server-read").accessTokenValiditySeconds(100).and()
+                .withClient("admin").secret("123").
+                authorizedGrantTypes("admin_credentials").
+                authorizedGrantTypes("client_credentials")
+                .scopes("resource-server-write").scopes("resource-server-read").accessTokenValiditySeconds(1000);
     }
 
     @Override

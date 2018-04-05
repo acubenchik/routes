@@ -17,19 +17,21 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
 @Controller
 @EnableCircuitBreaker
+@RequestMapping("route")
 public class RouteController {
 
     private final RouteRepository routeRepository;
     private final RouteResourceAssembler routeResourceAssembler;
 
-    private final DiscountClient discountClient;
-
+    private final RouteControllerDelegate routeControllerDelegate;
 
     @Autowired
-    public RouteController(RouteRepository routeRepository, RouteResourceAssembler routeResourceAssembler, DiscountClient discountClient) {
+    public RouteController(RouteRepository routeRepository,
+                           RouteResourceAssembler routeResourceAssembler,
+                           RouteControllerDelegate routeControllerDelegate) {
         this.routeRepository = routeRepository;
         this.routeResourceAssembler = routeResourceAssembler;
-        this.discountClient = discountClient;
+        this.routeControllerDelegate = routeControllerDelegate;
     }
 
     @RequestMapping(value = "get/all", method = RequestMethod.GET)
@@ -47,5 +49,11 @@ public class RouteController {
         RouteResource resource = routeResourceAssembler.toResource(item);
         resource.add(linkTo(methodOn(RouteController.class).getItem(id)).withRel("all"));
         return ResponseEntity.ok(resource);
+    }
+
+    @RequestMapping(value="checkout", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    public ResponseEntity checkout(){
+        return this.routeControllerDelegate.checkout();
     }
 }
