@@ -51,7 +51,7 @@ public class RouteController {
         return ResponseEntity.ok(resource);
     }
 
-    @RequestMapping(value="checkout", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value="checkout", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity checkout(){
         return this.routeControllerDelegate.checkout();
