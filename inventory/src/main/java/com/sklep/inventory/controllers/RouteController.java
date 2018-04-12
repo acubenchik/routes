@@ -59,20 +59,6 @@ public class RouteController {
         return ResponseEntity.ok(resource);
     }
 
-    @RequestMapping(value = "get/image/{id}", method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
-    public Map<String, String> getImage(@PathVariable String id) {
-        File file;
-        Map<String, String> jsonMap = new HashMap<>();
-        try {
-            file = new ClassPathResource(id + ".jpeg").getFile();
-            String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(Files.readAllBytes(file.toPath()));
-            jsonMap.put("content", encodeImage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return jsonMap;
-    }
 
     @RequestMapping(value = "checkout", method = RequestMethod.POST)
     @ResponseBody

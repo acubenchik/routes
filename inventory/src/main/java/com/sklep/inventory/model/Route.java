@@ -1,6 +1,10 @@
 package com.sklep.inventory.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import java.util.List;
 
 @Entity
 public class Route extends AbstractRoute {
@@ -9,6 +13,18 @@ public class Route extends AbstractRoute {
     }
 
     private String length;
+    private String description;
+
+    @OneToMany(mappedBy = "route")
+    private List<RouteTimeSlot> slots;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getLength() {
         return length;
