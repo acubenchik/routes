@@ -5,11 +5,19 @@ import com.sklep.inventory.model.Route;
 import com.sklep.inventory.repos.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import resources.RouteResource;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
@@ -51,9 +59,24 @@ public class RouteController {
         return ResponseEntity.ok(resource);
     }
 
-    @RequestMapping(value="checkout", method = RequestMethod.POST)
+    @RequestMapping(value = "get/image/{id}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public ResponseEntity checkout(){
+    public Map<String, String> getImage(@PathVariable String id) {
+        File file;
+        Map<String, String> jsonMap = new HashMap<>();
+        try {
+            file = new ClassPathResource(id + ".jpeg").getFile();
+            String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(Files.readAllBytes(file.toPath()));
+            jsonMap.put("content", encodeImage);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jsonMap;
+    }
+
+    @RequestMapping(value = "checkout", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity checkout() {
         return this.routeControllerDelegate.checkout();
     }
 }
