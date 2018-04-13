@@ -1,6 +1,7 @@
-package com.sklep.inventory.model;
+package com.routes.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class RouteTimeSlot {
@@ -14,6 +15,17 @@ public class RouteTimeSlot {
 
     @ManyToOne
     private Guide guide;
+
+    @Column
+    private LocalDateTime availableDate;
+
+    public LocalDateTime getAvailableDate() {
+        return availableDate;
+    }
+
+    public void setAvailableDate(LocalDateTime availableDate) {
+        this.availableDate = availableDate;
+    }
 
     public long getId() {
         return id;

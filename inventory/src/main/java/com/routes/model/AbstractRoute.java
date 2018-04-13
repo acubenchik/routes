@@ -1,9 +1,9 @@
-package com.sklep.inventory.model;
+package com.routes.model;
 
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class AbstractRoute {
 
     @Id

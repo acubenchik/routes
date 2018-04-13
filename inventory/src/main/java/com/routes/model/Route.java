@@ -1,22 +1,32 @@
-package com.sklep.inventory.model;
+package com.routes.model;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import java.util.List;
 
 @Entity
+@NamedEntityGraph(name = "AbstractRoute.all",
+        attributeNodes = {@NamedAttributeNode("slots")})
 public class Route extends AbstractRoute {
+
+    private String length;
+    private String description;
+    @OneToMany(mappedBy = "route")
+//    @Fetch(FetchMode.JOIN) // ignored by spring
+    private List<RouteTimeSlot> slots;
 
     public Route() {
     }
 
-    private String length;
-    private String description;
+    public List<RouteTimeSlot> getSlots() {
+        return slots;
+    }
 
-    @OneToMany(mappedBy = "route")
-    private List<RouteTimeSlot> slots;
+    public void setSlots(List<RouteTimeSlot> slots) {
+        this.slots = slots;
+    }
 
     public String getDescription() {
         return description;

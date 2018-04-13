@@ -1,7 +1,6 @@
-package com.sklep.inventory.controllers;
+package com.routes.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +21,7 @@ public class LocaleController {
 
     @RequestMapping(value = "greeting/get", method = RequestMethod.GET)
     @ResponseBody
-    public String greet(){
+    public String greet() {
         return myMessageSource.getMessage("greeting", null, Locale.forLanguageTag("en-US"));
     }
 }

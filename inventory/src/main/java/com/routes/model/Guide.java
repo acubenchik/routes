@@ -1,4 +1,4 @@
-package com.sklep.inventory.model;
+package com.routes.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

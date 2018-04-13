@@ -1,4 +1,4 @@
-package com.sklep.inventory;
+package com.routes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +14,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableHystrix
 public class InventoryApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(InventoryApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(InventoryApplication.class, args);
+    }
 }

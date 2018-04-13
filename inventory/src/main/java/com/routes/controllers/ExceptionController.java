@@ -1,4 +1,4 @@
-package com.sklep.inventory.controllers;
+package com.routes.controllers;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

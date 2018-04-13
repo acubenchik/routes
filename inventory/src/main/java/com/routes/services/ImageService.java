@@ -1,4 +1,4 @@
-package com.sklep.inventory.services;
+package com.routes.services;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
@@ -13,7 +13,7 @@ import java.util.Base64;
 
 @Component
 @EnableCircuitBreaker
-public class ImageService implements IImageService{
+public class ImageService implements IImageService {
 
     @Override
     @HystrixCommand(fallbackMethod = "getDefaultImage", commandProperties = {
@@ -26,7 +26,7 @@ public class ImageService implements IImageService{
         return Base64.getEncoder().withoutPadding().encodeToString(Files.readAllBytes(file.toPath()));
     }
 
-    public String getDefaultImage(String id){
+    public String getDefaultImage(String id) {
         File file = null;
         try {
             file = new ClassPathResource("default.jpeg").getFile();

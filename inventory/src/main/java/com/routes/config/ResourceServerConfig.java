@@ -1,4 +1,4 @@
-package com.sklep.inventory.config;
+package com.routes.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +19,8 @@ import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFacto
 @Configuration
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
+    public static final String SECURED_READ = "#oauth2.hasScope('resource-server-read')";
+    public static final String SECURED_WRITE = "#oauth2.hasScope('resource-server-write')";
     private final Environment environment;
 
     @Autowired
@@ -54,13 +56,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         return defaultTokenServices;
     }
 
-    public static final String SECURED_READ = "#oauth2.hasScope('resource-server-read')";
-    public static final String SECURED_WRITE = "#oauth2.hasScope('resource-server-write')";
-
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.requestMatchers().antMatchers("/get/all").and().authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/get/all").access(SECURED_READ).
-        anyRequest().access(SECURED_READ);
+                anyRequest().access(SECURED_READ);
     }
 }

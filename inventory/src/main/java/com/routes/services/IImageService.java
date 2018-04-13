@@ -1,4 +1,4 @@
-package com.sklep.inventory.services;
+package com.routes.services;
 
 import java.io.IOException;
 

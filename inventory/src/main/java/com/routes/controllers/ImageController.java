@@ -1,17 +1,14 @@
-package com.sklep.inventory.controllers;
+package com.routes.controllers;
 
 
-import com.sklep.inventory.services.IImageService;
+import com.routes.services.IImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,20 +21,21 @@ public class ImageController {
     private IImageService imageService;
 
     @Autowired
-    public ImageController(IImageService imageService){
+    public ImageController(IImageService imageService) {
         this.imageService = imageService;
     }
 
 
     @RequestMapping(value = "get/{id}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public Map<String, String> getImage(@PathVariable String id) {
+    public ResponseEntity<Map<String, String>> getImage(@PathVariable String id) {
         Map<String, String> jsonMap = new HashMap<>();
         try {
             jsonMap.put("content", imageService.getImage(id));
         } catch (IOException e) {
 
         }
-        return jsonMap;
+        return ResponseEntity.ok()
+                .body(jsonMap);
     }
 }

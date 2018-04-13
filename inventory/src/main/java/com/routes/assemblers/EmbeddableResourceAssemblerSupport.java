@@ -1,4 +1,4 @@
-package com.sklep.inventory.assemblers;
+package com.routes.assemblers;
 
 import org.springframework.hateoas.*;
 import org.springframework.hateoas.core.EmbeddedWrapper;
@@ -28,7 +28,7 @@ public abstract class EmbeddableResourceAssemblerSupport<T, D extends ResourceSu
     public List<EmbeddedWrapper> toEmbeddable(Iterable<T> entities) {
         final EmbeddedWrappers wrapper = new EmbeddedWrappers(true); // Prefer collection
         final List<D> resources = toResources(entities);
-        return resources.stream().map( a -> wrapper.wrap(a) ).collect(Collectors.toList());
+        return resources.stream().map(a -> wrapper.wrap(a)).collect(Collectors.toList());
     }
 
     public EmbeddedWrapper toEmbeddable(T entity) {
