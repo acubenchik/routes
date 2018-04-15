@@ -1,0 +1,18 @@
+version: "3"
+services:
+  web:
+    image: acubenchik/routes-eureka:current
+    deploy:
+      replicas: 2 
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 500M
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8010:8010"
+    networks:
+      - webnet
+networks:
+  webnet:

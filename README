@@ -1,0 +1,2 @@
+docker stack deploy -c docker-compose.yml routes
+docker stack rm routes
