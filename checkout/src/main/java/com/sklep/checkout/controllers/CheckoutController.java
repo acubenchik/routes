@@ -1,5 +1,6 @@
 package com.sklep.checkout.controllers;
 
+import com.sklep.checkout.model.Order;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,8 +15,9 @@ public class CheckoutController {
 
     @RequestMapping(method = RequestMethod.POST, value = "checkout")
     @ResponseBody
-    public ResponseEntity checkout(@RequestBody Map<String, String> params) {
-        return ResponseEntity.ok()
-                .body(params);
+    public ResponseEntity checkout(@RequestBody Order order) {
+        //SEND EMAIL OR STORE INTO DB HERE
+        return ResponseEntity.ok(null);
+
     }
 }

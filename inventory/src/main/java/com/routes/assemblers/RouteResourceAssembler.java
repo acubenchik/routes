@@ -9,7 +9,7 @@ import org.springframework.hateoas.RelProvider;
 import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.core.EmbeddedWrapper;
 import org.springframework.stereotype.Service;
-import resources.RouteResource;
+import com.routes.resources.RouteResource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public class RouteResourceAssembler extends EmbeddableResourceAssemblerSupport<R
 
     @Override
     protected RouteResource instantiateResource(Route entity) {
-        return new RouteResource(entity.getName(), entity.getId());
+        return new RouteResource(entity.getName(), entity.getId(), entity.getDescription());
     }
 
     @Override

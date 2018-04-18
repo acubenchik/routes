@@ -1,9 +1,6 @@
 package com.routes.model;
 
-import javax.persistence.Entity;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -12,6 +9,7 @@ import java.util.List;
 public class Route extends AbstractRoute {
 
     private String length;
+    @Column(length = 1000)
     private String description;
     @OneToMany(mappedBy = "route")
 //    @Fetch(FetchMode.JOIN) // ignored by spring

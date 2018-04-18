@@ -9,7 +9,7 @@ import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import resources.RouteResource;
+import com.routes.resources.RouteResource;
 
 import java.util.Map;
 
