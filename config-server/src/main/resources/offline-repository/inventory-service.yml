@@ -3,6 +3,7 @@ spring.h2.console.enabled: true
 spring.datasource.url: jdbc:h2:file:~/route
 spring.datasource.username: sa
 spring.jpa.show-sql: true
+management.endpoints.web.exposure.include: hystrix.stream
 keystore:
  password: mySecretKey
 security:

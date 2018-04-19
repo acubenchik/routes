@@ -23,6 +23,7 @@ public class RouteControllerDelegate {
     @HystrixCommand(fallbackMethod = "sorry", commandProperties = {
             @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "20000"),
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000"),
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
             @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "10")
     })
     public ResponseEntity checkout(Map<String, String> params) {
