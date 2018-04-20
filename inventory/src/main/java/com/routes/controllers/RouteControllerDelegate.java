@@ -20,8 +20,8 @@ public class RouteControllerDelegate {
         this.checkoutClient = checkoutClient;
     }
 
-    @HystrixCommand(fallbackMethod = "sorry", commandProperties = {
-            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "20000"),
+    @HystrixCommand(fallbackMethod = "sorry", threadPoolKey = "awesomeTP", commandProperties = {
+            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "2000"),
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000"),
             @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
             @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "10")
