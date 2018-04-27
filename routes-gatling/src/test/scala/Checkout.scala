@@ -12,6 +12,6 @@ class Checkout extends Simulation {
     .pause(5)
 
   setUp(
-    scn.inject(rampUsers(100) over 10)
+    scn.inject(constantUsersPerSec(40) during (200))
   ).protocols(httpProtocol)
 }

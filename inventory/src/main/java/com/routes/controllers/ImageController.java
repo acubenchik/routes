@@ -4,6 +4,7 @@ package com.routes.controllers;
 import com.routes.services.IImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,14 +12,17 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
-@CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
+@CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*",
+        exposedHeaders = {"ETag", "Cache-Control"})
 @Controller
 @EnableCircuitBreaker
 @RequestMapping("image")
 public class ImageController {
 
     private IImageService imageService;
+
 
     @Autowired
     public ImageController(IImageService imageService) {
@@ -35,7 +39,7 @@ public class ImageController {
         } catch (IOException e) {
 
         }
-        return ResponseEntity.ok()
+        return ResponseEntity.ok().cacheControl(CacheControl.maxAge(1, TimeUnit.DAYS))
                 .body(jsonMap);
     }
 }
