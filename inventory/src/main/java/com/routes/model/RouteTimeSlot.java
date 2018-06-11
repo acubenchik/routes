@@ -1,9 +1,14 @@
 package com.routes.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
+@Setter
 public class RouteTimeSlot {
 
     @Id
@@ -19,35 +24,4 @@ public class RouteTimeSlot {
     @Column
     private LocalDateTime availableDate;
 
-    public LocalDateTime getAvailableDate() {
-        return availableDate;
-    }
-
-    public void setAvailableDate(LocalDateTime availableDate) {
-        this.availableDate = availableDate;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Route getRoute() {
-        return route;
-    }
-
-    public void setRoute(Route route) {
-        this.route = route;
-    }
-
-    public Guide getGuide() {
-        return guide;
-    }
-
-    public void setGuide(Guide guide) {
-        this.guide = guide;
-    }
 }
